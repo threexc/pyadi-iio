@@ -21,10 +21,22 @@ class ad4020(rx, context_manager):
 
         self._rxadc = self._ctx.find_device("ad4020")
         self._ctrl = self._ctx.find_device("ad4020")
+        self._device_name = "ad4020"
         rx.__init__(self)
+
+        if not self._ctrl:
+            raise Exception("Error in selecting matching device")
+
+        if not self._rxadc:
+            raise Exception("Error in selecting matching device")
 
     @property
     def sampling_frequency(self):
         """sample_rate: Only readable
         """
         return self._get_iio_dev_attr("sampling_frequency")
+
+    @sampling_frequency.setter
+    def sampling_frequency(self, value):
+        """Set the sampling frequency."""
+        self._set_iio_dev_attr("sampling_frequency", str(value))
