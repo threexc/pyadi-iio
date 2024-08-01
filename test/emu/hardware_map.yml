@@ -610,3 +610,12 @@ ad4170:
      - filename: ad4170.xml
      - data_devices:
          - iio:device0
+ad7960:
+  - ad7960
+  - ad7961
+  - pyadi_iio_class_support:
+      - ad7625
+  - emulate:
+      - filename: ad7960.xml
+      - data_devices:
+          - iio:device1
